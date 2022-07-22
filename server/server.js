@@ -1,21 +1,40 @@
-//requiring express and http to make it easier to host our client
+/*We will use express and http to make it easy to host our client*/
 const express = require('express');
 const http = require('http');
-
-// defining the application
+ 
+/*Defining WebApp*/
 const app = express();
-
-//This gives the path to our client
-const clientPath =`${__dirname}/../client/`;
-
-//uses express to host the client
+ 
+/*Give our client path to app*/
+const clientPath = `${__dirname}/../client`;
+/*Use express JS to host the client*/
 app.use(express.static(clientPath));
-//use http to serve the app that express provides
+/*Use http to serve the Express app*/
 const server = http.createServer(app);
-
-//sets the server live
-server.listen(8080, () =>{
-    console.log("server running on "+8080);
+/*Make server listen on localhost*/
+const PORT = 8080;
+server.listen(PORT, () =>{
+   console.log("server running on "+PORT);
 });
-
-
+const io = require('socket.io')(server);
+ 
+/* Execute arrow function on connection */
+let counter = 0;
+io.on('connection', (socket) => {
+    console.log('The server received: ' + counter + ' connections so far.');
+/*React to buttons clicked on clientside*/
+/*This is an observer that waits until the message "sendToAll" gets passed to the server.*/
+socket.on("sendToAll", (message) => {
+/*Show the message in the server console*/
+console.log(`Received from client ${message}`);
+/*Send displayMessage to all clients and attach message*/
+io.emit("displayMessage", message);
+});
+socket.on("sendToMe", (message) => {
+//Show the message in the server console
+console.log(`Received from client ${message}`);
+/*The user wants to keep this ""private"" so we return this message trough the socket the client gave us*/
+socket.emit("displayPrivateMessage", message);
+});
+counter++
+});

@@ -45,3 +45,11 @@ socket.on("displayPrivateMessage", (message) => {
   /*Append the element to our target container */
   target.appendChild(messageParagraph);
 });
+
+/*Defining a variable username */
+let username;
+
+/*When page loads, Ask for user name*/
+window.onload = function createUsername() {
+  let user = prompt("Please enter your username:");
+};

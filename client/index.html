@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script scr="main.js"></script>
-    <title>Chatroom</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PageTitle</title>
+<!--Linking CSS scripts-->
+<link rel="stylesheet" href="style.css">
+<!--Linking Javascript-->
+<script src="/socket.io/socket.io.js " defer></script>
+<script src="main.js" defer></script>
 </head>
 <body>
-    
+<h1>MSN MESSENGER</h1>
+<!-- add an input field, 2 buttons and a target div.-->
+<img src="Images/msn.png" alt="messenger">
+<input type="text" id="user-input">
+<button id="send-to-all">Send to all</button>
+<button id="send-to-me">Send to me</button>
+
+
+
+<div id="target">
+<p>Target Div:</p>
+</div>
 </body>
 </html>

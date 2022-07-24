@@ -30,7 +30,7 @@ socket.on("displayMessage", (message) => {
   /*Create an element to hold the received user*/
   const chosenUser = document.createElement("p");
   /*Put the received user within the <p> element*/
-  chosenUser.innerText = username;
+  chosenUser.innerText = username + " " + "says:";
   /*Change the color for the user to make it more distinctive*/
   chosenUser.style.color = "red";
   /*Append the element to our target container */
@@ -46,6 +46,14 @@ socket.on("displayMessage", (message) => {
 socket.on("displayPrivateMessage", (message) => {
   /*Show the returned message in the browser console*/
   console.log(`Received from the server ${message}`);
+  /*Create an element to hold the received user*/
+  const chosenUser = document.createElement("p");
+  /*Put the received user within the <p> element*/
+  chosenUser.innerText = username + " " + "says:";
+  /*Change the color for the user to make it more distinctive*/
+  chosenUser.style.color = "red";
+  /*Append the element to our target container */
+  target.appendChild(chosenUser);
   /*Create an element to hold the received message*/
   const messageParagraph = document.createElement("p");
   /*Put the received message within the <p> element */

@@ -19,7 +19,7 @@ btnSendToAll.addEventListener("click", () => {
 btnSendToMe.addEventListener("click", () => {
   /*Get the message from the inputfield*/
   const message = userInput.value;
-  /*Tell server we have a message only ment for me!*/
+  /*Tell server we have a message only meant for me!*/
   socket.emit("sendToMe", message);
 });
 /*Listen to the socket for a request called displayMessage*/
@@ -27,6 +27,14 @@ btnSendToMe.addEventListener("click", () => {
 socket.on("displayMessage", (message) => {
   /*Show the returned message in the browser console*/
   console.log(`Received from server:${message}`);
+  /*Create an element to hold the received user*/
+  const chosenUser = document.createElement("p");
+  /*Put the received user within the <p> element*/
+  chosenUser.innerText = username;
+  /*Change the color for the user to make it more distinctive*/
+  chosenUser.style.color = "red";
+  /*Append the element to our target container */
+  target.appendChild(chosenUser);
   /*Create an element to hold the received message*/
   const messageParagraph = document.createElement("p");
   /*Put the received message within the <p> element */
@@ -52,4 +60,5 @@ let username;
 /*When page loads, Ask for user name*/
 window.onload = function createUsername() {
   let user = prompt("Please enter your username:");
+  username = user;
 };
